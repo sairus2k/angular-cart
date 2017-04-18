@@ -1,6 +1,5 @@
 import angular from 'angular';
 
-import {hello} from './app/hello';
 import {navbar} from './app/components/navbar';
 import {login} from './app/components/login';
 import {signup} from './app/components/signup';
@@ -15,7 +14,6 @@ export const app = 'app';
 angular
   .module(app, ['ui.router'])
   .config(routesConfig)
-  .component('app', hello)
   .component('navbar', navbar)
   .component('login', login)
   .component('signup', signup)
