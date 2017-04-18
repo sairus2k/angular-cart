@@ -1,21 +1,57 @@
 <div class="container">
   <div class="row vertical-center">
     <div class="col-md-4 col-md-offset-4">
-      <form>
-        <div class="form-group">
+      <form name="signup" ng-submit="$ctrl.submit()" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : (signup.email.$invalid && signup.email.$touched) }">
           <label for="signupEmail">Email address</label>
-          <input type="email" class="form-control" id="signupEmail" placeholder="Email">
+          <input
+            type="email"
+            name="email"
+            class="form-control"
+            id="signupEmail"
+            placeholder="Email"
+            ng-model="$ctrl.user.email"
+            required
+          >
+          <p ng-show="(signup.email.$invalid && signup.email.$touched && signup.email.$error.required)"
+             class="help-block"
+          >Your email is required.</p>
+          <p ng-show="(signup.email.$invalid && signup.email.$touched && signup.email.$error.email)"
+             class="help-block"
+          >Please enter valid email.</p>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : (signup.password.$invalid && signup.password.$touched) }">
           <label for="signupPassword">Password</label>
-          <input type="password" class="form-control" id="signupPassword" placeholder="Password">
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            id="signupPassword"
+            placeholder="Password"
+            ng-model="$ctrl.user.password"
+            minlength="6"
+            required
+          >
+          <p ng-show="(signup.password.$invalid && signup.password.$dirty && signup.password.$error.required)"
+             class="help-block"
+          >Your password is required.</p>
+          <p ng-show="(signup.password.$invalid && signup.password.$touched && signup.password.$error.minlength)"
+             class="help-block"
+          >Please enter at least 6 symbols.</p>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : (signup.confirm.$invalid && signup.confirm.$touched) }">
           <label for="signupConfirm">Confirm password</label>
-          <input type="password" class="form-control" id="signupConfirm" placeholder="Password">
+          <input
+            type="password"
+            name="confirm"
+            class="form-control"
+            id="signupConfirm"
+            placeholder="Password"
+            ng-model="$ctrl.user.confirm"
+          >
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-default">Sign Up</button>
+          <button type="submit" class="btn btn-default" ng-disabled="false">Sign Up</button>
         </div>
       </form>
       Already registered? Please <a ui-sref="login">login.</a>
