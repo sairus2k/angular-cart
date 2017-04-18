@@ -32,7 +32,7 @@
             minlength="6"
             required
           >
-          <p ng-show="(signup.password.$invalid && signup.password.$dirty && signup.password.$error.required)"
+          <p ng-show="(signup.password.$invalid && signup.password.$touched && signup.password.$error.required)"
              class="help-block"
           >Your password is required.</p>
           <p ng-show="(signup.password.$invalid && signup.password.$touched && signup.password.$error.minlength)"
@@ -48,7 +48,11 @@
             id="signupConfirm"
             placeholder="Password"
             ng-model="$ctrl.user.confirm"
+            compare-to="$ctrl.user.password"
           >
+          <p ng-show="(signup.confirm.$invalid && signup.confirm.$touched && signup.confirm.$error.compareTo)"
+             class="help-block"
+          >Passwords did not match.</p>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default" ng-disabled="false">Sign Up</button>

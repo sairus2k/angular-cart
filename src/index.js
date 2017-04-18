@@ -1,5 +1,6 @@
 import angular from 'angular';
 
+import {compareTo} from './app/directives/compare-to';
 import {navbar} from './app/components/navbar';
 import {login} from './app/components/login';
 import {signup} from './app/components/signup';
@@ -14,6 +15,7 @@ export const app = 'app';
 angular
   .module(app, ['ui.router'])
   .config(routesConfig)
+  .directive('compareTo', compareTo)
   .component('navbar', navbar)
   .component('login', login)
   .component('signup', signup)
