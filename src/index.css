@@ -6,3 +6,8 @@ body {
   display: flex;
   align-items: center;
 }
+
+.form-row {
+  text-align: center;
+  margin-bottom: 20px;
+}
