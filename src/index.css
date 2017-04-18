@@ -1,3 +1,8 @@
 body {
   background-color: lightgrey;
 }
+.vertical-center {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+}
