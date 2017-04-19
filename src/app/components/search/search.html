@@ -41,24 +41,24 @@
     <div class="col-md-8 col-md-offset-2">
 
       <hr>
-      <div class="item">
+      <div class="item" ng-repeat="item in $ctrl.items track by item.id">
         <div class="item-image">
-          <img src="http://placehold.it/150x150" alt="placeholder">
+          <img ng-src="{{item.image_url}}" alt="placeholder">
         </div>
         <div class="item-name">
-          Name <br>
-          Blue
+          {{item.name}} <br>
+          {{item.color}}
         </div>
         <div class="item-details">
-          Issue 05/15/2017<br>
+          Issue {{item.issue_date}}<br>
           <div class="checkbox">
             <label>
-              <input type="checkbox" disabled checked> In Stock
+              <input type="checkbox" disabled ng-checked="item.in_stock"> In Stock
             </label>
           </div>
         </div>
         <div class="item-order">
-          <div class="item-price">$20</div>
+          <div class="item-price">${{item.price}}</div>
           <button class="btn btn-primary">Order</button>
         </div>
       </div>

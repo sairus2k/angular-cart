@@ -1,0 +1,62 @@
+[
+  {
+    "id": 0,
+    "name": "product 1",
+    "color": "Red",
+    "issue_date": "05/17/2017",
+    "price": 20.55,
+    "rating": 4,
+    "in_stock": true,
+    "image_url": "http://placehold.it/150x150"
+  },
+  {
+    "id": 1,
+    "name": "product 2",
+    "color": "Blue",
+    "issue_date": "05/17/2017",
+    "price": 20.55,
+    "rating": 4,
+    "in_stock": true,
+    "image_url": "http://placehold.it/150x150"
+  },
+  {
+    "id": 2,
+    "name": "product 3",
+    "color": "White",
+    "issue_date": "05/17/2017",
+    "price": 19.99,
+    "rating": 5,
+    "in_stock": true,
+    "image_url": "http://placehold.it/150x150"
+  },
+  {
+    "id": 3,
+    "name": "product 4",
+    "color": "Green",
+    "issue_date": "04/17/2017",
+    "price": 15.88,
+    "rating": 3,
+    "in_stock": false,
+    "image_url": "http://placehold.it/150x150"
+  },
+  {
+    "id": 4,
+    "name": "product 5",
+    "color": "Red",
+    "issue_date": "04/17/2017",
+    "price": 10,
+    "rating": 5,
+    "in_stock": false,
+    "image_url": "http://placehold.it/150x150"
+  },
+  {
+    "id": 5,
+    "name": "product 6",
+    "color": "Green",
+    "issue_date": "06/17/2017",
+    "price": 9.99,
+    "rating": 2,
+    "in_stock": true,
+    "image_url": "http://placehold.it/150x150"
+  }
+]

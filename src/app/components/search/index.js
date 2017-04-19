@@ -2,7 +2,9 @@ import './search.css';
 
 export const search = {
   template: require('./search.html'),
-  controller() {
-    this.hello = 'search!';
+  controller(Products) {
+    'ngInject';
+
+    this.items = Products.get();
   }
 };

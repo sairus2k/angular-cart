@@ -1,6 +1,7 @@
 import angular from 'angular';
 
 import {auth} from './app/services/auth';
+import {Products} from './app/services/products';
 import {compareTo} from './app/directives/compare-to';
 import {navbar} from './app/components/navbar';
 import {login} from './app/components/login';
@@ -16,6 +17,7 @@ export const app = 'app';
 angular
   .module(app, ['ui.router'])
   .factory('Auth', auth)
+  .factory('Products', Products)
   .config(routesConfig)
   .directive('compareTo', compareTo)
   .component('navbar', navbar)
