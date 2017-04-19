@@ -24,11 +24,23 @@
         <div class="form-row">
           <div class="form-group">
             <label for="searchPriceFrom">Price from</label>
-            <input type="text" class="form-control" id="searchPriceFrom" placeholder="From">
+            <input
+              type="number"
+              class="form-control"
+              id="searchPriceFrom"
+              placeholder="From"
+              ng-model="priceFrom"
+            >
           </div>
           <div class="form-group">
             <label for="searchPriceTo">To</label>
-            <input type="text" class="form-control" id="searchPriceTo" placeholder="To">
+            <input
+              type="number"
+              class="form-control"
+              id="searchPriceTo"
+              placeholder="To"
+              ng-model="priceTo"
+            >
           </div>
           <div class="form-group">
             <label for="searchColor">Color</label>
@@ -45,7 +57,10 @@
     <div class="col-md-8 col-md-offset-2">
 
       <hr>
-      <div class="item" ng-repeat="item in $ctrl.items | filter:$ctrl.filter">
+      <div
+        class="item"
+        ng-repeat="item in $ctrl.items | filter:$ctrl.filter | filter:$ctrl.range('price', priceFrom, priceTo)"
+      >
         <div class="item-image">
           <img ng-src="{{item.image_url}}" alt="placeholder">
         </div>
