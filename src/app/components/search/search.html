@@ -13,7 +13,11 @@
           </div>
           <div class="checkbox">
             <label>
-              <input type="checkbox"> In Stock
+              <input
+                type="checkbox"
+                ng-model="$ctrl.filter.in_stock"
+                ng-false-value="{{null}}"
+              > In Stock
             </label>
           </div>
         </div>
@@ -28,9 +32,9 @@
           </div>
           <div class="form-group">
             <label for="searchColor">Color</label>
-            <select class="form-control" id="searchColor">
-              <option value="1">Blue</option>
-              <option value="2">White</option>
+            <select class="form-control" id="searchColor" ng-model="$ctrl.filter.color">
+              <option value="">-----</option>
+              <option ng-repeat="color in $ctrl.colors" value="{{color}}">{{color}}</option>
             </select>
           </div>
         </div>
@@ -41,7 +45,7 @@
     <div class="col-md-8 col-md-offset-2">
 
       <hr>
-      <div class="item" ng-repeat="item in $ctrl.items track by item.id">
+      <div class="item" ng-repeat="item in $ctrl.items | filter:$ctrl.filter">
         <div class="item-image">
           <img ng-src="{{item.image_url}}" alt="placeholder">
         </div>
