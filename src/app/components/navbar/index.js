@@ -3,6 +3,7 @@ export const navbar = {
   controller($rootScope, $state, Auth) {
     'ngInject';
 
+    this.user = Auth.getUser();
     const loginEvent = $rootScope.$on('login', () => {
       this.user = Auth.getUser();
     });

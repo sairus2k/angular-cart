@@ -34,6 +34,7 @@ export function auth($log) {
     if (user.email === localUser.email && bcrypt.compareSync(user.password, localUser.hash)) {
       email = user.email;
       isLogin = true;
+      saveLogin(email);
       return true;
     }
     logout();
@@ -43,9 +44,47 @@ export function auth($log) {
   function logout() {
     email = '';
     isLogin = false;
+    removeLogin();
   }
 
   function getUser() {
+    const currentUser = getLogin();
+    if (currentUser) {
+      email = currentUser;
+      isLogin = true;
+    }
     return {email, isLogin};
+  }
+
+  function saveLogin(email) {
+    const date = new Date().getTime();
+    try {
+      localStorage.setItem('currentUser', angular.toJson({email, date}));
+    } catch (e) {
+      $log(e);
+    }
+  }
+
+  function getLogin() {
+    const day = 60 * 60 * 24;
+    const today = new Date().getTime();
+    const yesterday = today - day;
+    try {
+      const currentUser = angular.fromJson(localStorage.getItem('currentUser'));
+      if (currentUser && currentUser.date >= yesterday) {
+        return currentUser.email;
+      }
+      removeLogin();
+    } catch (e) {
+      $log(e);
+    }
+  }
+
+  function removeLogin() {
+    try {
+      localStorage.removeItem('currentUser');
+    } catch (e) {
+      $log(e);
+    }
   }
 }
