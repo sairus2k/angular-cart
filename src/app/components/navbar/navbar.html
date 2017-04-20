@@ -12,9 +12,16 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ui-sref-active="active"><a ui-sref="signup">Sign Up</a></li>
-        <li ui-sref-active="active"><a ui-sref="login">Log In</a></li>
-        <li ui-sref-active="active"><a ui-sref="search">Search</a></li>
+        <li ng-if="!$ctrl.user.isLogin" ui-sref-active="active"><a ui-sref="signup">Sign Up</a></li>
+        <li ng-if="!$ctrl.user.isLogin" ui-sref-active="active"><a ui-sref="login">Log In</a></li>
+        <li ng-if="$ctrl.user.isLogin" ui-sref-active="active"><a ui-sref="search">Search</a></li>
+        <li ng-if="$ctrl.user.isLogin"><a ui-sref="profile">{{$ctrl.user.email}}</a></li>
+      </ul>
+      <form ng-if="$ctrl.user.isLogin" class="navbar-form navbar-left">
+        <button type="button" class="btn btn-default" ng-click="$ctrl.logout()">Logout</button>
+      </form>
+      <ul ng-if="$ctrl.user.isLogin" class="nav navbar-nav navbar-right">
+        <li><a href="#">Cart</a></li>
       </ul>
     </div>
   </div>

@@ -5,13 +5,13 @@ export function auth($log) {
   'ngInject';
 
   let email = '';
-  let authenticated = false;
+  let isLogin = false;
 
   return {
     signup,
     login,
-    email,
-    authenticated
+    logout,
+    getUser
   };
 
   function signup(user) {
@@ -33,11 +33,19 @@ export function auth($log) {
     }
     if (user.email === localUser.email && bcrypt.compareSync(user.password, localUser.hash)) {
       email = user.email;
-      authenticated = true;
+      isLogin = true;
       return true;
     }
-    email = '';
-    authenticated = false;
+    logout();
     return false;
+  }
+
+  function logout() {
+    email = '';
+    isLogin = false;
+  }
+
+  function getUser() {
+    return {email, isLogin};
   }
 }
