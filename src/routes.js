@@ -1,7 +1,5 @@
-export default routesConfig;
-
 /** @ngInject */
-function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+export function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
   $urlRouterProvider.otherwise('/');
 
@@ -18,4 +16,16 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/signup',
       component: 'signup'
     });
+}
+
+/** @ngInject */
+export function routesAuth($transitions, Auth) {
+  $transitions.onStart({to: 'search'}, trans => {
+    const $state = trans.router.stateService;
+    const isLogin = Auth.getUser().isLogin;
+    if (!isLogin) {
+      return $state.target('login');
+    }
+    return true;
+  });
 }

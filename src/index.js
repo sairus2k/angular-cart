@@ -8,7 +8,7 @@ import {login} from './app/components/login';
 import {signup} from './app/components/signup';
 import {search} from './app/components/search';
 import 'angular-ui-router';
-import routesConfig from './routes';
+import {routesConfig, routesAuth} from './routes';
 
 import './index.css';
 
@@ -16,6 +16,7 @@ export const app = 'app';
 
 angular
   .module(app, ['ui.router'])
+  .run(routesAuth)
   .factory('Auth', auth)
   .factory('Products', Products)
   .config(routesConfig)
