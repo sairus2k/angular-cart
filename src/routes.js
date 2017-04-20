@@ -6,7 +6,8 @@ export function routesConfig($stateProvider, $urlRouterProvider, $locationProvid
   $stateProvider
     .state('search', {
       url: '/',
-      component: 'search'
+      component: 'search',
+      authRequired: true
     })
     .state('login', {
       url: '/login',
@@ -20,11 +21,20 @@ export function routesConfig($stateProvider, $urlRouterProvider, $locationProvid
 
 /** @ngInject */
 export function routesAuth($transitions, Auth) {
-  $transitions.onStart({to: 'search'}, trans => {
+  $transitions.onStart({to: state => state.authRequired}, trans => {
     const $state = trans.router.stateService;
     const isLogin = Auth.getUser().isLogin;
     if (!isLogin) {
       return $state.target('login');
+    }
+    return true;
+  });
+
+  $transitions.onStart({to: state => !state.authRequired}, trans => {
+    const $state = trans.router.stateService;
+    const isLogin = Auth.getUser().isLogin;
+    if (isLogin) {
+      return $state.target('search');
     }
     return true;
   });
