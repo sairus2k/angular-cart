@@ -1,21 +1,26 @@
 export const navbar = {
   template: require('./navbar.html'),
-  controller($rootScope, $state, Auth) {
+  controller($rootScope, Auth) {
     'ngInject';
 
-    this.user = Auth.getUser();
-    const loginEvent = $rootScope.$on('login', () => {
+    const getNewUser = () => {
       this.user = Auth.getUser();
-    });
+    };
+
+    const loginHandler = $rootScope.$on('login:success', getNewUser);
+    const logoutHandler = $rootScope.$on('logout', getNewUser);
 
     this.logout = () => {
       Auth.logout();
-      $rootScope.$emit('login');
-      $state.go('login');
     };
 
     this.$onDestroy = () => {
-      loginEvent();
+      loginHandler();
+      logoutHandler();
+    };
+
+    this.$onInit = () => {
+      getNewUser();
     };
   }
 };

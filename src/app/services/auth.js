@@ -1,7 +1,7 @@
 import angular from 'angular';
 import bcrypt from 'bcryptjs';
 
-export function auth($rootScope, $log) {
+export function auth($rootScope, $state, $log) {
   'ngInject';
 
   let email = '';
@@ -15,27 +15,43 @@ export function auth($rootScope, $log) {
   };
 
   function signup(user) {
-    user.hash = bcrypt.hashSync(user.password);
-    delete user.password;
+    const hash = bcrypt.hashSync(user.password);
+    let duplicate;
+
     try {
-      localStorage.setItem('register', angular.toJson(user));
+      duplicate = localStorage.getItem(user.email);
+    } catch (e) {
+      $log(e);
+    }
+
+    if (duplicate !== null) {
+      $rootScope.$emit('register:duplicate');
+      $state.go('login');
+      return false;
+    }
+
+    try {
+      localStorage.setItem(user.email, hash);
+      login(user);
+      $rootScope.$emit('register:success');
     } catch (e) {
       $log(e);
     }
   }
 
   function login(user) {
-    let localUser;
+    let hash;
     try {
-      localUser = angular.fromJson(localStorage.getItem('register'));
+      hash = localStorage.getItem(user.email);
     } catch (e) {
       $log(e);
     }
-    if (user.email === localUser.email && bcrypt.compareSync(user.password, localUser.hash)) {
+    if (hash && bcrypt.compareSync(user.password, hash)) {
       email = user.email;
       isLogin = true;
       saveLogin(email);
       $rootScope.$emit('login:success');
+      $state.go('search');
       return true;
     }
     $rootScope.$emit('login:failed');
@@ -47,6 +63,8 @@ export function auth($rootScope, $log) {
     email = '';
     isLogin = false;
     removeLogin();
+    $rootScope.$emit('logout');
+    $state.go('login');
   }
 
   function getUser() {
