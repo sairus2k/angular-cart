@@ -4,6 +4,7 @@ import uiBootstrapModal from 'angular-ui-bootstrap/src/modal';
 
 import {auth} from './app/services/auth';
 import {Products} from './app/services/products';
+import {cart} from './app/services/cart';
 import {compareTo} from './app/directives/compare-to';
 import {navbar} from './app/components/navbar';
 import {login} from './app/components/login';
@@ -22,6 +23,7 @@ angular
   .run(routesAuth)
   .factory('Auth', auth)
   .factory('Products', Products)
+  .factory('Cart', cart)
   .config(routesConfig)
   .directive('compareTo', compareTo)
   .component('navbar', navbar)

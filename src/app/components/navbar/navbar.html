@@ -21,7 +21,7 @@
         <button type="button" class="btn btn-default" ng-click="$ctrl.logout()">Logout</button>
       </form>
       <form ng-if="$ctrl.user.isLogin" class="navbar-form navbar-right">
-        <button type="button" class="btn btn-default" ng-click="$ctrl.openCart()">Cart</button>
+        <button type="button" class="btn btn-default" ng-click="$ctrl.openCart()">Cart: {{$ctrl.cart.length}}</button>
       </form>
     </div>
   </div>

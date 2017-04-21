@@ -3,7 +3,7 @@ import './search.css';
 
 export const search = {
   template: require('./search.html'),
-  controller(Products) {
+  controller(Products, Cart) {
     'ngInject';
 
     this.items = Products.get();
@@ -24,6 +24,11 @@ export const search = {
       from = new Date(from).getTime() || Number.MIN_VALUE;
       to = new Date(to).getTime() || Number.MAX_VALUE;
       return item => from <= item[field] && item[field] <= to;
+    };
+
+    this.order = item => {
+      item.inCart = true;
+      Cart.add(item);
     };
   }
 };

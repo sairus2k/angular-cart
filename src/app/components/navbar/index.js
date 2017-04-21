@@ -1,6 +1,6 @@
 export const navbar = {
   template: require('./navbar.html'),
-  controller($rootScope, $uibModal, Auth) {
+  controller($rootScope, $uibModal, Auth, Cart) {
     'ngInject';
 
     const getNewUser = () => {
@@ -29,6 +29,7 @@ export const navbar = {
 
     this.$onInit = () => {
       getNewUser();
+      this.cart = Cart.get();
     };
   }
 };
