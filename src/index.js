@@ -1,4 +1,6 @@
 import angular from 'angular';
+import uiRouter from 'angular-ui-router';
+import uiBootstrapModal from 'angular-ui-bootstrap/src/modal';
 
 import {auth} from './app/services/auth';
 import {Products} from './app/services/products';
@@ -8,7 +10,7 @@ import {login} from './app/components/login';
 import {signup} from './app/components/signup';
 import {search} from './app/components/search';
 import {alert} from './app/components/alert';
-import 'angular-ui-router';
+import {modal} from './app/components/modal';
 import {routesConfig, routesAuth} from './routes';
 
 import './index.css';
@@ -16,7 +18,7 @@ import './index.css';
 export const app = 'app';
 
 angular
-  .module(app, ['ui.router'])
+  .module(app, [uiRouter, uiBootstrapModal])
   .run(routesAuth)
   .factory('Auth', auth)
   .factory('Products', Products)
@@ -26,5 +28,6 @@ angular
   .component('login', login)
   .component('signup', signup)
   .component('search', search)
-  .component('alert', alert);
+  .component('alert', alert)
+  .component('modal', modal);
 

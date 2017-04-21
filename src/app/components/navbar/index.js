@@ -1,6 +1,6 @@
 export const navbar = {
   template: require('./navbar.html'),
-  controller($rootScope, Auth) {
+  controller($rootScope, $uibModal, Auth) {
     'ngInject';
 
     const getNewUser = () => {
@@ -12,6 +12,14 @@ export const navbar = {
 
     this.logout = () => {
       Auth.logout();
+    };
+
+    this.openCart = () => {
+      const modalInstance = $uibModal.open({
+        component: 'modal'
+      });
+
+      modalInstance.result.then(() => {}, () => {});
     };
 
     this.$onDestroy = () => {
