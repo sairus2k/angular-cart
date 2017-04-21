@@ -86,7 +86,7 @@ export function auth($rootScope, $state, $log) {
   }
 
   function getLogin() {
-    const day = 60 * 60 * 24;
+    const day = 1000 * 60 * 60 * 24;
     const today = new Date().getTime();
     const yesterday = today - day;
     try {
