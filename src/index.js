@@ -7,6 +7,7 @@ import {navbar} from './app/components/navbar';
 import {login} from './app/components/login';
 import {signup} from './app/components/signup';
 import {search} from './app/components/search';
+import {alert} from './app/components/alert';
 import 'angular-ui-router';
 import {routesConfig, routesAuth} from './routes';
 
@@ -24,5 +25,6 @@ angular
   .component('navbar', navbar)
   .component('login', login)
   .component('signup', signup)
-  .component('search', search);
+  .component('search', search)
+  .component('alert', alert);
 

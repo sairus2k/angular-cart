@@ -1,7 +1,7 @@
 import angular from 'angular';
 import bcrypt from 'bcryptjs';
 
-export function auth($log) {
+export function auth($rootScope, $log) {
   'ngInject';
 
   let email = '';
@@ -35,8 +35,10 @@ export function auth($log) {
       email = user.email;
       isLogin = true;
       saveLogin(email);
+      $rootScope.$emit('login:success');
       return true;
     }
+    $rootScope.$emit('login:failed');
     logout();
     return false;
   }
