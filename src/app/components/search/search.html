@@ -92,6 +92,9 @@
             </label>
           </div>
         </div>
+        <div class="item-rating">
+          <rating ng-model="item.rating" on-rating-select="$ctrl.ratingChange(rating, item)"></rating>
+        </div>
         <div class="item-order">
           <div class="item-price">${{item.price}}</div>
           <button class="btn btn-primary" ng-click="$ctrl.order(item)" ng-disabled="item.inCart">

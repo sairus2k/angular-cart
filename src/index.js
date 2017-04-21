@@ -12,6 +12,7 @@ import {signup} from './app/components/signup';
 import {search} from './app/components/search';
 import {alert} from './app/components/alert';
 import {modal} from './app/components/modal';
+import {rating} from './app/components/rating';
 import {routesConfig, routesAuth} from './routes';
 
 import './index.css';
@@ -31,5 +32,6 @@ angular
   .component('signup', signup)
   .component('search', search)
   .component('alert', alert)
-  .component('modal', modal);
+  .component('modal', modal)
+  .component('rating', rating);
 

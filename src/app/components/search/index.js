@@ -30,5 +30,9 @@ export const search = {
       item.inCart = true;
       Cart.add(item);
     };
+
+    this.ratingChange = (rating, item) => {
+      item.rating = rating;
+    };
   }
 };
