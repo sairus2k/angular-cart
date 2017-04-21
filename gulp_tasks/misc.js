@@ -27,6 +27,6 @@ function other() {
 }
 
 function deploy() {
-  return gulp.src(conf.path.dist)
+  return gulp.src(path.join(conf.paths.dist, '/**/*'))
     .pipe(ghPages());
 }
